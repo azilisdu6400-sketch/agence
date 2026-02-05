@@ -1,2 +1,205 @@
 # agence
 Webapp pour une agence de voyage temporel fictive, créée avec IA générative.
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeTravel Agency | Explorez l'Histoire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap');
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; color: white; scroll-behavior: smooth; }
+
+        /* --- BACKGROUND CAROUSEL --- */
+        .carousel-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            transform: scale(1.1);
+        }
+        .carousel-slide.active { opacity: 0.5; transform: scale(1); transition: opacity 1.5s ease-in-out, transform 10s linear; }
+        
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), #0f172a);
+        }
+
+        /* --- UI COMPONENTS --- */
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .btn-primary { background: #3b82f6; color: white; transition: all 0.3s ease; }
+        .btn-primary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5); }
+
+        /* --- VIDEO CARDS --- */
+        .video-container { position: relative; width: 100%; height: 450px; border-radius: 24px; overflow: hidden; background: #1e293b; }
+        .video-container video { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 p-6 flex justify-between items-center glass m-4 rounded-2xl w-[calc(100%-2rem)]">
+        <div class="text-xl font-extrabold tracking-tight flex items-center gap-2">
+            <span class="bg-blue-600 p-1.5 rounded-lg"><i class="fas fa-plane-departure text-white text-sm"></i></span>
+            TimeTravelAgency
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-bold">
+            <a href="#destinations" class="hover:text-blue-400 transition">Nos Expéditions</a>
+            <a href="#booking" class="hover:text-blue-400 transition">Réserver</a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex flex-col justify-center items-center text-center px-6">
+        <div class="carousel-container">
+            <div class="carousel-slide active" style="background-image: url('photo paris.jpg');"></div>
+            <div class="carousel-slide" style="background-image: url('photo dino.jpg');"></div>
+            <div class="carousel-slide" style="background-image: url('photo florence.jpg');"></div>
+            <div class="overlay"></div>
+        </div>
+
+        <span class="bg-blue-500/20 text-blue-400 text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-widest">Le monde vous attend, peu importe l'époque</span>
+        <h1 class="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight">Vivez <span class="text-blue-500">l'Histoire.</span></h1>
+        <p class="text-gray-300 max-w-2xl text-lg mb-10 font-medium">
+            De la Renaissance aux géants du Crétacé, embarquez pour un voyage sans précédent. <br>Votre itinéraire temporel commence ici.
+        </p>
+        <div class="flex gap-4">
+            <a href="#destinations" class="btn-primary px-10 py-4 rounded-xl font-bold shadow-lg">Explorer les époques</a>
+        </div>
+    </section>
+
+    <section id="destinations" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-4xl font-extrabold mb-4">Destinations Immédiates</h2>
+            <p class="text-gray-400 text-lg">Choisissez votre couloir temporel et laissez-vous guider.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="group">
+                <div class="video-container mb-6 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <video autoplay muted loop playsinline>
+                        <source src="video paris.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Belle Époque</span>
+                        <h3 class="text-3xl font-bold">Paris 1889</h3>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">Soyez aux premières loges pour l'inauguration de la Dame de Fer et l'Exposition Universelle.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xl">12 500 €</span>
+                    <button class="text-blue-400 font-bold hover:underline">Détails <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="video-container mb-6 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <video autoplay muted loop playsinline>
+                        <source src="video dinos.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Aventure Ultime</span>
+                        <h3 class="text-3xl font-bold">Le Crétacé</h3>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">Un safari photo d'un autre temps. Observez la vie sauvage telle qu'elle était il y a 65 millions d'années.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xl">25 000 €</span>
+                    <button class="text-blue-400 font-bold hover:underline">Détails <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="video-container mb-6 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <video autoplay muted loop playsinline>
+                        <source src="video florence.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Art & Culture</span>
+                        <h3 class="text-3xl font-bold">Florence 1504</h3>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">Découvrez l'atelier des maîtres et vibrez au rythme de la Renaissance italienne à son apogée.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xl">18 000 €</span>
+                    <button class="text-blue-400 font-bold hover:underline">Détails <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-8 right-8 z-[100]">
+        <button onclick="toggleChat()" class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-xl hover:scale-105 transition-all">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </button>
+
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-[360px] glass rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-white/10">
+            <div class="p-4 bg-blue-600 text-white flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span class="font-bold text-sm">Concierge Chronos</span>
+                </div>
+                <button onclick="toggleChat()"><i class="fas fa-times text-xs"></i></button>
+            </div>
+            
+            <div id="chat-content" class="h-80 overflow-y-auto p-4 space-y-4 text-sm bg-slate-900/50">
+                <div class="bg-blue-600/20 border border-blue-500/30 p-3 rounded-xl rounded-tl-none">
+                    Bienvenue chez <span class="text-blue-400 font-bold">TimeTravel Agency</span>. Je suis à votre service pour organiser votre saut temporel. Quel horizon souhaitez-vous explorer ?
+                </div>
+            </div>
+
+            <div class="p-4 bg-slate-900 border-t border-white/10 flex gap-2">
+                <input type="text" id="user-input" placeholder="Posez-moi vos questions..." class="w-full bg-transparent text-xs outline-none focus:ring-0">
+                <button onclick="handleMsg()" class="text-blue-500 px-2 hover:text-blue-400"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- LOGIQUE CAROUSEL ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
+
+        // --- CHATBOT ---
+        function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
+
+        function handleMsg() {
+            const input = document.getElementById('user-input');
+            const val = input.value.trim().toLowerCase();
+            if(!val) return;
+
+            const content = document.getElementById('chat-content');
+            content.innerHTML += `<div class="flex flex-row-reverse"><div class="bg-blue-600 p-3 rounded-xl rounded-tr-none text-xs text-white shadow-md">${input.value}</div></div>`;
+            
+            let response = "Nos équipes de sécurité temporelle analysent votre demande. Désirez-vous plus d'informations sur nos destinations ?";
+            if(val.includes("paris")) response = "Pour Paris 1889, l'Exposition Universelle est un incontournable. Le tarif est fixé à 12 500 € par personne.";
+            if(val.includes("crétacé") || val.includes("dino")) response = "Le Crétacé est notre destination la plus aventureuse. Comptez 25 000 € pour une immersion sécurisée de 72 heures.";
+            if(val.includes("florence")) response = "Florence en 1504 est le choix idéal pour les passionnés d'art. Le saut est disponible à 18 000 €.";
+
+            setTimeout(() => {
+                content.innerHTML += `<div class="bg-blue-600/20 border border-blue-500/30 p-3 rounded-xl rounded-tl-none">${response}</div>`;
+                content.scrollTop = content.scrollHeight;
+            }, 600);
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
